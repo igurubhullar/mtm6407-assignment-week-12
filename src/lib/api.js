@@ -25,7 +25,7 @@ export async function fetchMovies(query = "") {
   const url = `${baseUrl}/api/movies${
     query ? `?query=${encodeURIComponent(query)}` : ""
   }`;
-
+  console.log("url", url);
   const res = await fetch(url, {
     cache: "no-store",
   });
