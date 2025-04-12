@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,17 +13,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Travel Explorer",
-  description: "Discover amazing travel destinations around the world",
+  title: "CineCritic - Movie Reviews",
+  description: "Discover and explore movie reviews from our critics",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-950 text-white `}
       >
-        {children}
+        <Header />
+        <main className="container mx-auto px-4 py-8 min-h-screen">
+          {children}
+        </main>
+        <footer className="bg-black py-6 mt-12">
+          <div className="container mx-auto px-4 text-center text-gray-400">
+            <p>CineCritic © {new Date().getFullYear()} - All rights reserved</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
