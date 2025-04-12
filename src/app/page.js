@@ -1,20 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
-import { fetchReviews } from "@/lib/api";
+import { fetchMovies } from "@/lib/api";
 
-async function getPopularReviews() {
+async function getPopularMovies() {
   try {
-    return await fetchReviews();
+    return await fetchMovies();
   } catch (error) {
-    console.error("Error loading reviews:", error);
+    console.error("Error loading movies:", error);
     return [];
   }
 }
 
 export default async function Home() {
-  const reviews = await getPopularReviews();
-  const featuredReviews = reviews.slice(0, 3);
+  const movies = await getPopularMovies();
+  const featuredMovies = movies.slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -30,25 +30,20 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Reviews */}
       <section className="my-12">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 border-b border-gray-800 pb-2">
-          Featured Reviews
+          Featured Movies
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredReviews.map((review) => (
-            <Link
-              key={review.id}
-              href={`/reviews/${review.id}`}
-              className="group"
-            >
+          {featuredMovies.map((movie) => (
+            <Link key={movie.id} href={`/movies/${movie.id}`} className="group">
               <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg h-full">
                 <div className="relative h-64 w-full">
-                  {review.poster !== "N/A" ? (
+                  {movie.poster !== "N/A" ? (
                     <Image
-                      src={review.poster}
-                      alt={`${review.title} poster`}
+                      src={movie.poster}
+                      alt={`${movie.title} poster`}
                       fill
                       style={{ objectFit: "cover" }}
                       className="transition-opacity duration-300 group-hover:opacity-90"
@@ -59,17 +54,17 @@ export default async function Home() {
                     </div>
                   )}
                   <div className="absolute top-2 right-2 bg-yellow-500 text-black font-bold rounded-full px-2 py-1 text-xs">
-                    ★ {review.rating}
+                    ★ {movie.rating}
                   </div>
                 </div>
 
                 <div className="p-4">
                   <h3 className="text-lg font-semibold mb-1 group-hover:text-yellow-400 transition-colors">
-                    {review.title} ({review.year})
+                    {movie.title} ({movie.year})
                   </h3>
-                  <p className="text-gray-300 text-sm mb-3">{review.excerpt}</p>
+                  <p className="text-gray-300 text-sm mb-3">{movie.excerpt}</p>
                   <div className="text-yellow-500 text-sm font-semibold">
-                    Read review →
+                    Read movie →
                   </div>
                 </div>
               </div>
@@ -79,10 +74,10 @@ export default async function Home() {
 
         <div className="mt-8 text-center">
           <Link
-            href="/reviews"
+            href="/movies"
             className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-6 rounded-full transition-colors"
           >
-            View All Reviews
+            View All Movies
           </Link>
         </div>
       </section>

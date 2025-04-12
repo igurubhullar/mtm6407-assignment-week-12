@@ -1,21 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fetchReview } from "@/lib/api";
+import { fetchMovie } from "@/lib/api";
 
-async function getReview(id) {
+async function getMovie(id) {
   try {
-    return await fetchReview(id);
+    return await fetchMovie(id);
   } catch (error) {
-    console.error("Error fetching review:", error);
+    console.error("Error fetching movie:", error);
     return null;
   }
 }
 
-export default async function ReviewDetailPage({ params }) {
-  const review = await getReview(params.id);
+export default async function MovieDetailPage({ params }) {
+  const p = await params;
+  const movie = await getMovie(p.id);
 
-  if (!review || !review.id) {
+  if (!movie || !movie.id) {
     notFound();
   }
 
@@ -23,7 +24,7 @@ export default async function ReviewDetailPage({ params }) {
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
         <Link
-          href="/reviews"
+          href="/movies"
           className="text-yellow-500 hover:text-yellow-400 flex items-center gap-1"
         >
           <svg
@@ -40,7 +41,7 @@ export default async function ReviewDetailPage({ params }) {
               d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
             />
           </svg>
-          Back to reviews
+          Back to movies
         </Link>
       </div>
 
@@ -48,10 +49,10 @@ export default async function ReviewDetailPage({ params }) {
         <div className="md:flex">
           <div className="md:w-1/3 relative">
             <div className="relative h-80 md:h-full w-full">
-              {review.poster !== "N/A" ? (
+              {movie.poster !== "N/A" ? (
                 <Image
-                  src={review.poster}
-                  alt={`${review.title} poster`}
+                  src={movie.poster}
+                  alt={`${movie.title} poster`}
                   fill
                   style={{ objectFit: "cover" }}
                   priority
@@ -67,22 +68,22 @@ export default async function ReviewDetailPage({ params }) {
           <div className="md:w-2/3 p-6">
             <div className="flex justify-between items-start">
               <h1 className="text-2xl md:text-3xl font-bold mb-2">
-                {review.title}
+                {movie.title}
               </h1>
               <div className="bg-yellow-500 text-black font-bold rounded-full px-3 py-1 text-sm">
-                ★ {review.rating}/10
+                ★ {movie.rating}/10
               </div>
             </div>
 
             <p className="text-gray-400 mb-4">
-              {review.year} • Directed by {review.director}
+              {movie.year} • Directed by {movie.director}
             </p>
 
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2 text-yellow-500">
                 Plot
               </h2>
-              <p className="text-gray-300">{review.plot}</p>
+              <p className="text-gray-300">{movie.plot}</p>
             </div>
           </div>
         </div>
@@ -93,7 +94,7 @@ export default async function ReviewDetailPage({ params }) {
           </h2>
           <div className="prose prose-invert prose-yellow max-w-none">
             <p className="text-gray-300 whitespace-pre-line">
-              {review.reviewContent}
+              {movie.reviewContent}
             </p>
           </div>
         </div>

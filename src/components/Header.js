@@ -11,7 +11,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="text-2xl font-bold">
-            CineCritic
+            Movies DB
           </Link>
 
           {/* Mobile menu button */}
@@ -45,10 +45,10 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/reviews"
+              href="/movies"
               className="hover:text-yellow-400 transition-colors"
             >
-              Reviews
+              Movies
             </Link>
             <Link
               href="/about"
@@ -70,11 +70,11 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/reviews"
+              href="/movies"
               className="hover:text-yellow-400 transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Reviews
+              Movies
             </Link>
             <Link
               href="/about"

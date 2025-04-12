@@ -18,11 +18,11 @@ export function getBaseUrl() {
 }
 
 /**
- * Fetch reviews with proper URL handling for both server and client components
+ * Fetch movies with proper URL handling for both server and client components
  */
-export async function fetchReviews(query = "") {
+export async function fetchMovies(query = "") {
   const baseUrl = getBaseUrl();
-  const url = `${baseUrl}/api/reviews${
+  const url = `${baseUrl}/api/movies${
     query ? `?query=${encodeURIComponent(query)}` : ""
   }`;
 
@@ -31,18 +31,18 @@ export async function fetchReviews(query = "") {
   });
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch reviews: ${res.status}`);
+    throw new Error(`Failed to fetch movies: ${res.status}`);
   }
 
   return res.json();
 }
 
 /**
- * Fetch single review with proper URL handling for both server and client components
+ * Fetch single movie with proper URL handling for both server and client components
  */
-export async function fetchReview(id) {
+export async function fetchMovie(id) {
   const baseUrl = getBaseUrl();
-  const url = `${baseUrl}/api/reviews?id=${id}`;
+  const url = `${baseUrl}/api/movies?id=${id}`;
 
   const res = await fetch(url, {
     cache: "no-store",

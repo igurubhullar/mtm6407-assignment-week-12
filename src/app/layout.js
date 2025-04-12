@@ -13,15 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "CineCritic - Movie Reviews",
-  description: "Discover and explore movie reviews from our critics",
+  title: "Movies DB",
+  description: "Discover and explore movies from our database",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-950 text-white `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-950 text-white`}
       >
         <Header />
         <main className="container mx-auto px-4 py-8 min-h-screen">
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         </main>
         <footer className="bg-black py-6 mt-12">
           <div className="container mx-auto px-4 text-center text-gray-400">
-            <p>CineCritic © {new Date().getFullYear()} - All rights reserved</p>
+            <p>Movies DB © {new Date().getFullYear()} - All rights reserved</p>
           </div>
         </footer>
       </body>

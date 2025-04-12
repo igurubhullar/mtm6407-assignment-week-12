@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ReviewCard({ review }) {
-  const { id, title, poster, year, rating, excerpt } = review;
+export default function MovieCard({ movie }) {
+  const { id, title, poster, year, rating, excerpt } = movie;
 
   return (
-    <Link href={`/reviews/${id}`} className="group">
+    <Link href={`/movies/${id}`} className="group">
       <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 h-full flex flex-col">
         <div className="relative h-64 w-full">
           {poster !== "N/A" ? (

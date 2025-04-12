@@ -10,7 +10,7 @@ export default function SearchBar({ initialQuery = "" }) {
   const handleSearch = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/reviews?query=${encodeURIComponent(query)}`);
+      router.push(`/movies?query=${encodeURIComponent(query)}`);
     }
   };
 
